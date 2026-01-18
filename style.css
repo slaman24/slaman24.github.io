@@ -34,9 +34,9 @@ header {
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--text-dark);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
 }
 
 nav ul {
@@ -75,7 +75,7 @@ section {
     background: linear-gradient(135deg, var(--bg-pink), var(--bg-lavender));
     padding: 100px 20px;
     border-radius: 20px;
-    margin: 2rem;
+    margin: 2rem auto;
 }
 
 /* Skills Grid */
