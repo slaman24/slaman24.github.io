@@ -87,7 +87,7 @@ section {
 }
 
 .skill-card {
-    background-color: var(--bg-mint);
+    background-color: var(--bg-blue);
     padding: 1.5rem;
     border-radius: 15px;
     text-align: center;
@@ -165,7 +165,6 @@ h1, h2 {
 
 .btn:hover {
     transform: scale(1.05);
-    background-color: var(--bg-blue);
 }
 
 footer {
