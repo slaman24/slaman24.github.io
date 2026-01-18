@@ -165,7 +165,7 @@ h1, h2 {
 
 .btn:hover {
     transform: scale(1.05);
-    background-color: var(--bg-lavender);
+    background-color: var(--bg-blue);
 }
 
 footer {
