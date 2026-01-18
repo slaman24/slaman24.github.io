@@ -55,8 +55,8 @@ nav a {
 }
 
 nav a:hover {
-    color: var(--bg-mint);
-    border-bottom: 2px solid var(--bg-mint);
+    color: var(--bg-lavender);
+    border-bottom: 2px solid var(--bg-lavender);
 }
 
 nav a.active {
