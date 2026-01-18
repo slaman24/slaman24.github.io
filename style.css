@@ -165,6 +165,8 @@ h1, h2 {
 
 .btn:hover {
     transform: scale(1.05);
+    background-color: var(--bg-mint);
+    filter: brightness(0.9);
 }
 
 footer {
