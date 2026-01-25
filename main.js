@@ -126,7 +126,7 @@ function initContactForm() {
 
                 // Note: 'no-cors' mode doesn't return response status, so we assume success
                 // If there's a network error, it will be caught in the catch block
-                showFormMessage('success', 'Thank you for your message! I\'ll get back to you soon! ✨');
+                showFormMessage('success', 'Thank you for your message! I\'ll get back to you soon! 😊');
                 form.reset();
                 // Remove validation states
                 [nameInput, emailInput, messageInput].forEach(input => {
