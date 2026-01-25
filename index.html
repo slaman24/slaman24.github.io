@@ -22,16 +22,60 @@
     </header>
 
     <main>
-        <section class="hero">
+        <section class="hero animate-on-scroll">
             <h1>Hi there, I'm Sara! 👋</h1>
             <p>I'm a current sophomore at Carnegie Mellon University studying Information Systems and Human-Computer Interaction. I'm passionate about designing and building technological solutions that address real world problems and drive social impact. </p>
             <br>
-            <a href="/Views/projects.html" class="btn">View My Work</a>
+            <a href="/Views/about.html" class="btn">Learn More About Me</a>
+        </section>
+
+        <!-- Project Previews Section -->
+        <section class="preview-section">
+            <h2 class="animate-on-scroll">Featured Projects ✨</h2>
+            <div class="preview-grid">
+                <!-- Preview 1 -->
+                <div class="preview-card animate-on-scroll">
+                    <div class="preview-image" style="background-color: var(--bg-pink);">
+                        <img src="/assets/btg.png" alt="BTG OpenGym">
+                    </div>
+                    <div class="preview-info">
+                        <h3>BTG OpenGym</h3>
+                        <p>Real-time gym occupancy tracker built with a cross-functional team at CMU.</p>
+                    </div>
+                </div>
+
+                <!-- Preview 2 -->
+                <div class="preview-card animate-on-scroll">
+                    <div class="preview-image" style="background-color: var(--bg-lavender);">
+                        <img src="/assets/dfa.png" alt="Design Time Capsule">
+                    </div>
+                    <div class="preview-info">
+                        <h3>Human-Centered Design Capsule</h3>
+                        <p>Digital collection of 50+ student projects highlighting human-centered design.</p>
+                    </div>
+                </div>
+
+                <!-- Preview 3 -->
+                <div class="preview-card animate-on-scroll">
+                    <div class="preview-image" style="background-color: var(--bg-mint);">
+                        <img src="/assets/112.png" alt="Escape 112">
+                    </div>
+                    <div class="preview-info">
+                        <h3>Escape 112</h3>
+                        <p>Interactive escape room-style game in Python with playful UI/UX features.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="view-all-container animate-on-scroll">
+                <a href="/Views/projects.html" class="btn">View All Projects</a>
+            </div>
         </section>
     </main>
 
     <footer>
         <p>&copy; 2026 Sara Laman. Original layout/styling created with Claude Sonnet 4.5</p>
     </footer>
+
+    <script src="/main.js"></script>
 </body>
 </html>

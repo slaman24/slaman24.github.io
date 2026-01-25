@@ -186,4 +186,262 @@ footer {
     nav ul {
         gap: 1rem;
     }
+
+    .contact-links {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* ============================================
+   Scroll Animations
+   ============================================ */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Fade in from left */
+.animate-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-left.animated {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Fade in from right */
+.animate-right {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-right.animated {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Scale up animation */
+.animate-scale {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-scale.animated {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ============================================
+   Project Preview Cards (Home Page)
+   ============================================ */
+.preview-section {
+    padding: 3rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.preview-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.preview-card {
+    background: var(--white);
+    border: 2px solid var(--bg-lavender);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px var(--shadow);
+}
+
+.preview-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px var(--shadow);
+}
+
+.preview-image {
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.preview-image img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.preview-info {
+    padding: 1rem 1.5rem 1.5rem;
+    text-align: left;
+}
+
+.preview-info h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+}
+
+.preview-info p {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+.view-all-container {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+/* ============================================
+   Contact Form Styles
+   ============================================ */
+.contact-form-container {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 4px 20px var(--shadow);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fafafa;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--bg-lavender);
+    box-shadow: 0 0 0 3px rgba(205, 180, 219, 0.3);
+    background-color: var(--white);
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Validation States */
+.form-group input.valid,
+.form-group textarea.valid {
+    border-color: var(--bg-mint);
+}
+
+.form-group input.invalid,
+.form-group textarea.invalid {
+    border-color: #ff6b6b;
+}
+
+.field-feedback {
+    display: block;
+    font-size: 0.85rem;
+    color: #ff6b6b;
+    margin-top: 0.25rem;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease;
+}
+
+.field-feedback.show {
+    height: auto;
+    padding-top: 0.25rem;
+}
+
+/* Form Messages */
+.form-message {
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.form-message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.form-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Shake Animation for Form Errors */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+/* Submit Button */
+.contact-form-container .btn {
+    width: 100%;
+    padding: 14px 24px;
+    font-size: 1rem;
+}
+
+.contact-form-container .btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* ============================================
+   Additional Responsive Styles
+   ============================================ */
+@media (max-width: 480px) {
+    .preview-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-form-container {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
 }
