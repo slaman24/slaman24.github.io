@@ -121,8 +121,13 @@ section {
 }
 
 .project-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-10px) !important;
     box-shadow: 0 8px 25px var(--shadow);
+}
+
+/* Ensure hover works after animation completes */
+.project-card.animate-on-scroll.animated:hover {
+    transform: translateY(-10px) !important;
 }
 
 .project-info {
