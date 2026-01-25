@@ -103,31 +103,37 @@ function initContactForm() {
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             submitBtn.disabled = true;
 
-            // Prepare form data for Formspree
-            const formData = new FormData(form);
+            // Prepare form data for Google Sheets
+            const formData = {
+                name: nameInput.value.trim(),
+                email: emailInput.value.trim(),
+                message: messageInput.value.trim(),
+                timestamp: new Date().toISOString()
+            };
+
+            // Get the Google Apps Script URL from data attribute
+            const scriptURL = form.dataset.action;
 
             try {
-                const response = await fetch(form.action, {
+                const response = await fetch(scriptURL, {
                     method: 'POST',
-                    body: formData,
+                    mode: 'no-cors', // Required for Google Apps Script
                     headers: {
-                        'Accept': 'application/json'
-                    }
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
                 });
 
-                if (response.ok) {
-                    // Success! Show confirmation
-                    showFormMessage('success', 'Thank you for your message! I\'ll get back to you soon! ✨');
-                    form.reset();
-                    // Remove validation states
-                    [nameInput, emailInput, messageInput].forEach(input => {
-                        input.classList.remove('valid', 'invalid');
-                        const feedback = input.parentElement.querySelector('.field-feedback');
-                        if (feedback) feedback.remove();
-                    });
-                } else {
-                    throw new Error('Form submission failed');
-                }
+                // Note: 'no-cors' mode doesn't return response status, so we assume success
+                // If there's a network error, it will be caught in the catch block
+                showFormMessage('success', 'Thank you for your message! I\'ll get back to you soon! ✨');
+                form.reset();
+                // Remove validation states
+                [nameInput, emailInput, messageInput].forEach(input => {
+                    input.classList.remove('valid', 'invalid');
+                    const feedback = input.parentElement.querySelector('.field-feedback');
+                    if (feedback) feedback.remove();
+                });
             } catch (error) {
                 showFormMessage('error', 'Oops! Something went wrong. Please try emailing me directly.');
             } finally {
