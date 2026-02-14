@@ -450,3 +450,132 @@ footer {
         padding: 1.5rem;
     }
 }
+
+/* ============================================
+   Chat Bubble Styles
+   ============================================ */
+#chat-bubble {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--bg-lavender);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 28px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    z-index: 2000;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#chat-bubble:hover {
+    transform: scale(1.1);
+    background: var(--bg-pink);
+}
+
+#chat-window {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 320px;
+    height: 450px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 2000;
+    font-family: inherit;
+    border: 1px solid #eee;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.chat-header {
+    background: var(--bg-lavender);
+    color: white;
+    padding: 15px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message {
+    padding: 8px 12px;
+    border-radius: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+.user-message {
+    align-self: flex-end;
+    background: var(--bg-blue);
+    color: white;
+}
+
+.bot-message {
+    align-self: flex-start;
+    background: #f0f0f0;
+    color: var(--text-dark);
+}
+
+.loading-dots {
+    font-style: italic;
+    color: #888;
+}
+
+#input-area {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #eee;
+    background: #fafafa;
+}
+
+#user-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 14px;
+    outline: none;
+}
+
+#send-btn {
+    background: var(--bg-lavender);
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-left: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    transition: background 0.3s ease;
+}
+
+#send-btn:hover {
+    background: var(--bg-pink);
+}

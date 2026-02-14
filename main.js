@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollAnimations();
     initNavHighlight();
     initContactForm();
+    initChatBubble();
 });
 
 // ============================================
@@ -253,4 +254,111 @@ function initTypingAnimation() {
         }
     }
     typeWriter();
+}
+
+// ============================================
+// Interactive Chat Bubble (SaraBot)
+// ============================================
+function initChatBubble() {
+    // 1. Inject HTML into the body
+    const chatContainer = document.createElement('div');
+    chatContainer.innerHTML = `
+        <div id="chat-bubble" title="Ask Sara anything!">💬</div>
+        <div id="chat-window">
+            <div class="chat-header">
+                <span>SaraBot AI</span>
+                <span id="close-chat" style="cursor:pointer; font-size: 20px;">&times;</span>
+            </div>
+            <div id="messages">
+                <div class="message bot-message">Hi! I'm Sara's AI assistant. Ask me about her projects, skills, or experience!</div>
+            </div>
+            <div id="input-area">
+                <input id="user-input" type="text" placeholder="Type your message..." autocomplete="off" />
+                <button id="send-btn">➔</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(chatContainer);
+
+    const bubble = document.getElementById("chat-bubble");
+    const windowBox = document.getElementById("chat-window");
+    const closeBtn = document.getElementById("close-chat");
+    const messages = document.getElementById("messages");
+    const input = document.getElementById("user-input");
+    const sendBtn = document.getElementById("send-btn");
+
+    // UPDATE THIS with your actual Render URL after deploying!
+    const BACKEND_URL = "https://your-render-backend-url.onrender.com/ask";
+
+    // Toggle chat window
+    bubble.onclick = () => {
+        const isVisible = windowBox.style.display === "flex";
+        windowBox.style.display = isVisible ? "none" : "flex";
+        if (!isVisible) input.focus();
+    };
+
+    closeBtn.onclick = (e) => {
+        e.stopPropagation();
+        windowBox.style.display = "none";
+    };
+
+    async function sendMessage() {
+        const question = input.value.trim();
+        if (!question) return;
+
+        // Show user message
+        const userMsgDiv = document.createElement('div');
+        userMsgDiv.className = 'message user-message';
+        userMsgDiv.textContent = question;
+        messages.appendChild(userMsgDiv);
+        
+        input.value = "";
+        messages.scrollTop = messages.scrollHeight;
+
+        // Add loading indicator
+        const loadingDiv = document.createElement('div');
+        loadingDiv.className = 'message bot-message loading-dots';
+        loadingDiv.textContent = 'SaraBot is thinking...';
+        messages.appendChild(loadingDiv);
+        messages.scrollTop = messages.scrollHeight;
+
+        try {
+            const res = await fetch(BACKEND_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ question })
+            });
+
+            if (!res.ok) throw new Error("Backend error");
+
+            const data = await res.json();
+            
+            // Remove loading and show AI response
+            if (messages.contains(loadingDiv)) {
+                messages.removeChild(loadingDiv);
+            }
+            
+            const botMsgDiv = document.createElement('div');
+            botMsgDiv.className = 'message bot-message';
+            botMsgDiv.textContent = data.answer || "Sorry, I couldn't get a response.";
+            messages.appendChild(botMsgDiv);
+        } catch (error) {
+            console.error("Chat Error:", error);
+            if (messages.contains(loadingDiv)) {
+                messages.removeChild(loadingDiv);
+            }
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'message bot-message';
+            errorDiv.style.color = 'red';
+            errorDiv.textContent = "Oops! I'm having trouble connecting right now. Please check the backend URL in main.js.";
+            messages.appendChild(errorDiv);
+        }
+        
+        messages.scrollTop = messages.scrollHeight;
+    }
+
+    sendBtn.onclick = sendMessage;
+    input.onkeypress = (e) => {
+        if (e.key === "Enter") sendMessage();
+    };
 }
