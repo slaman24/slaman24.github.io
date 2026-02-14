@@ -288,7 +288,7 @@ function initChatBubble() {
     const sendBtn = document.getElementById("send-btn");
 
     // UPDATE THIS with your actual Render URL after deploying!
-    const BACKEND_URL = "https://one5113-hw4-project.onrender.com";
+    const BACKEND_URL = "https://one5113-hw4-project.onrender.com/ask";
 
     // Toggle chat window
     bubble.onclick = () => {
@@ -329,9 +329,11 @@ function initChatBubble() {
                 body: JSON.stringify({ question })
             });
 
-            if (!res.ok) throw new Error("Backend error");
-
             const data = await res.json();
+
+            if (!res.ok) {
+                throw new Error(data.error || "Backend error");
+            }
             
             // Remove loading and show AI response
             if (messages.contains(loadingDiv)) {
@@ -350,7 +352,7 @@ function initChatBubble() {
             const errorDiv = document.createElement('div');
             errorDiv.className = 'message bot-message';
             errorDiv.style.color = 'red';
-            errorDiv.textContent = "Oops! I'm having trouble connecting right now. Please check the backend URL in main.js.";
+            errorDiv.textContent = `Error: ${error.message}`;
             messages.appendChild(errorDiv);
         }
         
