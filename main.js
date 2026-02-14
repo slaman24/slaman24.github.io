@@ -351,8 +351,7 @@ function initChatBubble() {
             }
             const errorDiv = document.createElement('div');
             errorDiv.className = 'message bot-message';
-            errorDiv.style.color = 'red';
-            errorDiv.textContent = `Error: ${error.message}`;
+            errorDiv.textContent = "I'm having a little trouble connecting right now. Please try again in a moment! (If the server was sleeping, it might just need a second to wake up).";
             messages.appendChild(errorDiv);
         }
         
