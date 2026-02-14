@@ -288,7 +288,7 @@ function initChatBubble() {
     const sendBtn = document.getElementById("send-btn");
 
     // UPDATE THIS with your actual Render URL after deploying!
-    const BACKEND_URL = "https://your-render-backend-url.onrender.com/ask";
+    const BACKEND_URL = "https://one5113-hw4-project.onrender.com";
 
     // Toggle chat window
     bubble.onclick = () => {
